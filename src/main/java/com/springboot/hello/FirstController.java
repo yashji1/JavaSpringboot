@@ -1,5 +1,6 @@
 package com.springboot.hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,11 @@ import org.springframework.stereotype.Component;
 public class FirstController {
     private String name;
     private int age;
+    // Making Call for DemoController  class inside this class 
+    @Autowired
+    // This @Autowired is used to tell the FirstController class that DemoController class is also there.
+    private DemoController demo;
+
     // Constructor
     public FirstController(){
         System.out.println("Object Created");
@@ -28,6 +34,16 @@ public class FirstController {
     }
     public void show(){
         System.out.println("This is the first Controller of class");
+        demo.display();
+    }
+
+    // DemoController Setting
+    public DemoController getter(){
+        return demo;
+    }
+    public void setter(DemoController demo){
+        this.demo= demo;
     }
 
 }
+
